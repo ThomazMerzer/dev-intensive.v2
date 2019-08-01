@@ -17,14 +17,14 @@ class ExampleUnitTest {
 
     @Test
     fun test_instance() {
-        //Тестим блок init{}
+//      Тестим блок init{}
         val user1 = User("id 1")
         val user2 = User("id 2", "User", "Second")
         val user3 = User("id 3", "User", "Third", null, 1, 1, null, true)
 
         println()
 
-        //Тестим метод каждого объекта
+//      Тестим метод каждого объекта
         user1.printMe()
         user2.printMe()
         user3.printMe()
@@ -32,8 +32,34 @@ class ExampleUnitTest {
 
     @Test
     fun test_factory() {
-        val user1 = User.Factory.makeUser("ThomazMerzer")
-        val user2 = User.Factory.makeUser("Nastya Saltanova")
-        val user3 = User.Factory.makeUser("Alexey Egin")
+        val user1 = User.Factory.makeUser("Юзер Юзерович")
+        println(user1)
+
+        val user2 = user1.copy(id = "id", firstName = "John", lastName = "Cena")
+        println(user2)
+    }
+
+    @Test
+    fun test_decomposition() {
+        val user = User.makeUser("Jonh Wick")
+
+        fun getUserinfo() = user
+        val (id, firstName, lastName) = getUserinfo()
+
+        println("$id, $firstName, $lastName")
+
+        println(user.component1())
+    }
+
+    @Test
+    fun test_copy() {
+        val user = User.makeUser("John WIck")
+        val user2 = user.copy(id = "1")
+
+        if(user == user2) {
+            println("Equals ${user.hashCode()}, ${user2.hashCode()}")
+        } else {
+            println("Not equals")
+        }
     }
 }

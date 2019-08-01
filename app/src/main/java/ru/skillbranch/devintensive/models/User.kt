@@ -1,12 +1,13 @@
 package ru.skillbranch.devintensive.models
 
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 /**
  * Тестовая сущность для второго урока DevIntensive
  */
 
-class User(val id: String,
+data class User(val id: String,
            var firstName: String?,
            var lastName: String?,
            var avatar: String?,
@@ -19,7 +20,7 @@ class User(val id: String,
     constructor(id: String): this(id, null, null)
 
     init {
-        println("It's Alive! $id: $firstName $lastName | $avatar.$rating.$respect.$lastVisit.$isOnline\n")
+        println("id:$id, $firstName $lastName | $avatar.$rating.$respect.$lastVisit.$isOnline\n")
     }
 
     fun printMe() {
@@ -27,14 +28,13 @@ class User(val id: String,
     }
 
     companion object Factory {
-        var lastId: Int = 0
+        var lastId: Int = -1
 
         fun makeUser(fullName: String?): User {
-            lastId = lastId.inc()
 
-            val parts: List<String>? = fullName?.split(" ")
-            val firstName= parts?.getOrNull(0)?.trim()
-            val lastName = parts?.getOrNull(1)?.trim()
+            lastId = lastId.inc()
+            val firstName = Utils.parseFullName(fullName).first
+            val lastName = Utils.parseFullName(fullName).second
 
             return User(id = "$lastId", firstName = firstName, lastName = lastName)
         }
