@@ -7,6 +7,7 @@ import ru.skillbranch.devintensive.extensions.add
 import ru.skillbranch.devintensive.extensions.format
 import ru.skillbranch.devintensive.extensions.toUserView
 import ru.skillbranch.devintensive.models.*
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 /**
@@ -101,5 +102,16 @@ class ExampleUnitTest {
 
         println(txtMessage.formatMessage())
         println(imgMessage.formatMessage())
+    }
+
+    @Test
+    fun test_parseFullName() {
+        println("""
+            ${Utils.parseFullName(null)}
+            ${Utils.parseFullName("")}
+            ${Utils.parseFullName(" ")}
+            ${Utils.parseFullName("John")}
+            ${Utils.parseFullName("John Cena")}
+        """.trimIndent())
     }
 }

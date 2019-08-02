@@ -8,7 +8,9 @@ object Utils {
         val firstName= parts?.getOrNull(0)?.trim()
         val lastName = parts?.getOrNull(1)?.trim()
 
-        return firstName to lastName
+        return if(firstName.isNullOrEmpty() && lastName.isNullOrEmpty()) {
+            null to null
+        } else firstName to lastName
     }
 
     fun transliteration(payload: String, divider: String = " "): String {
