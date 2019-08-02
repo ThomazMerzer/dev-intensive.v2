@@ -130,4 +130,14 @@ class ExampleUnitTest {
             ${Date().add(-4, TimeUnits.DAY)}
         """.trimIndent())
     }
+
+    @Test
+    fun test_to_initials() {
+        println("""
+            ${Utils.toInitials("jonh", "cena")}
+            ${Utils.toInitials("John", null)}
+            ${Utils.toInitials(null, null)}
+            ${Utils.toInitials(" ", "")}
+        """.trimIndent())
+    }
 }

@@ -17,8 +17,15 @@ object Utils {
         return this.toString()
     }
 
-    fun toInitials(str1: String? = null, str2: String? = null): String {
-        return this.toString()
-    }
+    fun toInitials(firstName: String? = null, lastName: String? = null): String? {
 
+        val firstInitial = firstName?.trim()?.take(1) ?: ""
+        val secondInitial = lastName?.trim()?.take(1) ?: ""
+
+        val initials = "$firstInitial$secondInitial"
+
+        return if(initials.isNotEmpty()) {
+            initials.toUpperCase()
+        } else null
+    }
 }
