@@ -140,4 +140,12 @@ class ExampleUnitTest {
             ${Utils.toInitials(" ", "")}
         """.trimIndent())
     }
+
+    @Test
+    fun test_transliteration() {
+        println("""
+            ${Utils.transliteration("Женя Стереотипов")}
+            ${Utils.transliteration("Amazing Петр","_")}
+        """.trimIndent())
+    }
 }
