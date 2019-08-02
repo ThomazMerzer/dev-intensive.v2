@@ -11,4 +11,12 @@ object Utils {
         return firstName to lastName
     }
 
+    fun transliteration(payload: String, divider: String = " "): String {
+        return this.toString()
+    }
+
+    fun toInitials(str1: String? = null, str2: String? = null): String {
+        return this.toString()
+    }
+
 }

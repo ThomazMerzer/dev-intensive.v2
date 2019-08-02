@@ -2,7 +2,12 @@ package ru.skillbranch.devintensive
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.devintensive.extensions.TimeUnits
+import ru.skillbranch.devintensive.extensions.add
+import ru.skillbranch.devintensive.extensions.format
+import ru.skillbranch.devintensive.extensions.toUserView
+import ru.skillbranch.devintensive.models.*
+import java.util.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -54,12 +59,47 @@ class ExampleUnitTest {
     @Test
     fun test_copy() {
         val user = User.makeUser("John WIck")
-        val user2 = user.copy(id = "1")
+        val user2 = user.copy(lastVisit = Date())
+        val user3 = user.copy(lastName = "Cena", lastVisit = Date().add(1, TimeUnits.DAYS))
 
-        if(user == user2) {
-            println("Equals ${user.hashCode()}, ${user2.hashCode()}")
-        } else {
-            println("Not equals")
+        println("""
+            ${user.lastVisit?.format("dd.MM.yy")}
+            ${user2.lastVisit?.format("dd.MM.yy")}
+            ${user3.lastVisit?.format("dd.MM.yy")}
+        """.trimIndent())
+
+        val testVal: List<String> = user2.lastVisit?.format("HH:mm:ss")!!.split(":")
+        val hh = testVal[0]
+        val mm = testVal[1]
+        val ss = testVal[2]
+        println("Часы $hh Минуты $mm Секунды $ss")
+    }
+
+    @Test
+    fun test_data_mapping() {
+        val user = User.makeUser("Thomaz Merzer")
+
+        user.printMe()
+
+        val userView = user.toUserView()
+
+        userView.printMe()
+    }
+
+    @Test
+    fun test_abstract_factory() {
+        val user = User.makeUser("Thomaz Merzer")
+        val txtMessage = BaseMessage.makeMessage(user, Chat("0"), payload = "any text message", type = "text")
+        val imgMessage = BaseMessage.makeMessage(user, Chat("0"), payload = "any image message", type = "image")
+
+        when(txtMessage) {
+            is TextMessage -> println("This is text message")
         }
+        when(imgMessage) {
+            is ImageMessage -> println("This is image message")
+        }
+
+        println(txtMessage.formatMessage())
+        println(imgMessage.formatMessage())
     }
 }
