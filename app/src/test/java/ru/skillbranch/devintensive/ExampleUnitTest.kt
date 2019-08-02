@@ -61,7 +61,7 @@ class ExampleUnitTest {
     fun test_copy() {
         val user = User.makeUser("John WIck")
         val user2 = user.copy(lastVisit = Date())
-        val user3 = user.copy(lastName = "Cena", lastVisit = Date().add(1, TimeUnits.DAYS))
+        val user3 = user.copy(lastName = "Cena", lastVisit = Date().add(1, TimeUnits.DAY))
 
         println("""
             ${user.lastVisit?.format("dd.MM.yy")}
@@ -120,6 +120,14 @@ class ExampleUnitTest {
         println("""
             ${Date().format()}
             ${Date().format("HH:mm")}
+        """.trimIndent())
+    }
+
+    @Test
+    fun test_date_add() {
+        println("""
+            ${Date().add(2, TimeUnits.SECOND)}
+            ${Date().add(-4, TimeUnits.DAY)}
         """.trimIndent())
     }
 }

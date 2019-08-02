@@ -9,10 +9,10 @@ const val HOUR = 60 * MINUTE
 const val DAY = 24 * HOUR
 
 enum class TimeUnits {
-    SECONDS,
-    MINUTES,
-    HOURS,
-    DAYS;
+    SECOND,
+    MINUTE,
+    HOUR,
+    DAY;
 }
 
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
@@ -20,14 +20,14 @@ fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     return dateFormat.format(this)
 }
 
-fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECONDS): Date {
+fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
     var time = this.time
 
     time += when(units) {
-        TimeUnits.SECONDS -> value * SECOND
-        TimeUnits.MINUTES -> value * MINUTE
-        TimeUnits.HOURS -> value * HOUR
-        TimeUnits.DAYS -> value * DAY
+        TimeUnits.SECOND -> value * SECOND
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
         else -> throw IllegalStateException("invalid unit")
     }
     this.time = time
