@@ -114,4 +114,12 @@ class ExampleUnitTest {
             ${Utils.parseFullName("John Cena")}
         """.trimIndent())
     }
+
+    @Test
+    fun test_date_format() {
+        println("""
+            ${Date().format()}
+            ${Date().format("HH:mm")}
+        """.trimIndent())
+    }
 }
