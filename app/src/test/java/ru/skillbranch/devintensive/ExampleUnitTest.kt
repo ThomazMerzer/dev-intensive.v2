@@ -2,10 +2,7 @@ package ru.skillbranch.devintensive
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.skillbranch.devintensive.extensions.TimeUnits
-import ru.skillbranch.devintensive.extensions.add
-import ru.skillbranch.devintensive.extensions.format
-import ru.skillbranch.devintensive.extensions.toUserView
+import ru.skillbranch.devintensive.extensions.*
 import ru.skillbranch.devintensive.models.*
 import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
@@ -148,4 +145,30 @@ class ExampleUnitTest {
             ${Utils.transliteration("Amazing Петр","_")}
         """.trimIndent())
     }
+
+    @Test
+    fun test_humanize_diff() {
+//        println("""
+//            ${Date().add(-2, TimeUnits.HOUR).humanizeDiff()}
+//            ${Date().add(-5, TimeUnits.DAY).humanizeDiff()}
+//            ${Date().add(2, TimeUnits.MINUTE).humanizeDiff()}
+//            ${Date().add(7, TimeUnits.DAY).humanizeDiff()}
+//            ${Date().add(-400, TimeUnits.DAY).humanizeDiff()}
+//            ${Date().add(400, TimeUnits.DAY).humanizeDiff()}
+//        """.trimIndent())
+
+        val test = Date().add(-2, TimeUnits.DAY)
+        test.humanizeDiff()
+    }
+
+    @Test
+    fun test_plural() {
+        println("""
+            ${TimeUnits.SECOND.plural(11)}
+            ${TimeUnits.MINUTE.plural(11)}
+            ${TimeUnits.HOUR.plural(11)}
+            ${TimeUnits.DAY.plural(11)}
+        """.trimIndent())
+    }
+
 }

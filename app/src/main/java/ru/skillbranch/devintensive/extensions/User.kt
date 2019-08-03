@@ -25,5 +25,10 @@ fun User.toUserView(): UserView {
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
-    return this.toString()
+    val tempString = ""
+
+    val diff = (date.time - this.time)
+    println(diff)
+
+    return tempString
 }
